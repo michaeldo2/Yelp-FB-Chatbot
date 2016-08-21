@@ -1,6 +1,6 @@
 {
-    "appSecret": "",
-    "pageAccessToken": "",
+    "appSecret": "61dc7344852ea957b0b250f2b0bce4fc",
+    "pageAccessToken": "EAACYHPEIf3oBAEjZBAthA1AGpXMzNOp1UhUm6qkhovaGILkrGhvPFEnCOqUSzxz0LN1o5imPMONTPdZAXE9Yei9SfwYpUPoEppO5ejOs2YMY0U1OxdDHAaLlMwvLzJa5lvN8rEwzXk9SdkyjPlLXfngTZBZC2l5JlXGSZBAfMAwZDZD",
     "validationToken": "jajajajaverify",
-    "serverURL": "http://e34bbeb8.ngrok.io/"
+    "serverURL": "https://mrboterino.herokuapp.com"
 }
