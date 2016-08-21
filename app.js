@@ -524,7 +524,7 @@ function sendTextMessage(recipientId, messageText) {
       id: recipientId
     },
     message: {
-      text: messageText,
+      text: "Hi, I'm Mr. Bot, type 'help' to see what I can do.",
       metadata: "DEVELOPER_DEFINED_METADATA"
     }
   };
