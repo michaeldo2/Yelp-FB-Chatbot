@@ -806,7 +806,7 @@ function greetBunny(recipientId) {
   var messageData = {
     recipient: {
       id: recipientId
-    }
+    },
     message: {
       text: "Hi dere bunny buns :3"
     }
