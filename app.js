@@ -307,6 +307,10 @@ function receivedMessage(event) {
         sendAccountLinking(senderID);
         break;
 
+      case 'hi dere':
+        greetBunny(senderID);
+        break;
+
       default:
         sendTextMessage(senderID, messageText);
     }
@@ -792,6 +796,19 @@ function sendAccountLinking(recipientId) {
           }]
         }
       }
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+function greetBunny(recipientId) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    }
+    message: {
+      text: "Hi dere bunny buns :3"
     }
   };
 
