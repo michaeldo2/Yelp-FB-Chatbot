@@ -32,13 +32,13 @@ var yelp = new Yelp({
   token_secret: 'HxOZ9e0dhdjOV-y-1BnVZEN8mnc'
 });
 
-yelp.search({ term: 'food', location: 'Montreal' })
-.then(function (data) {
-  console.log(data);
-})
-.catch(function (err) {
-  console.error(err);
-});
+// yelp.search({ term: 'food', location: 'Montreal' })
+// .then(function (data) {
+//   console.log(data);
+// })
+// .catch(function (err) {
+//   console.error(err);
+// });
 
 /*
  * Be sure to setup your config values before running this code. You can
