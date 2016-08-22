@@ -17,6 +17,7 @@ const
   express = require('express'),
   https = require('https'),
   Yelp = require('yelp'),
+  yelpQuery = null,
   request = require('request');
 
 var app = express();
@@ -256,6 +257,10 @@ function receivedMessage(event) {
     sendTextMessage(senderID, "Quick reply tapped");
     return;
   }
+  if (yelpQuery !== null) {
+    yelpQuery(senderID, messageText);
+    return;
+  }
 
   if (messageText) {
 
@@ -321,7 +326,12 @@ function receivedMessage(event) {
         break;
 
       case 'yelp':
-        yelpQuery(senderID);
+        yelpQuery = {
+          term: null,
+          location: null,
+          limit: null
+        };
+        sendTextMessage(senderID, 'What would you like to search for?');
         break;
 
       default:
@@ -541,7 +551,7 @@ function sendTextMessage(recipientId, messageText) {
       id: recipientId
     },
     message: {
-      text: "Hi, I'm Mr. Bot, type 'help' to see what I can do.",
+      text: messageText,
       metadata: "DEVELOPER_DEFINED_METADATA"
     }
   };
@@ -828,16 +838,27 @@ function greetBunny(recipientId) {
   callSendAPI(messageData);
 }
 
-function yelpQuery(recipientId) {
-  yelp.search({ term: 'food', location: 'San Diego' })
-  .then(function (data) {
-    data.businesses.forEach(function(business) {
-      console.log(business.name);
+function yelpQuery(recipientId, messageText) {
+
+  if (yelpQuery.term === null) {
+    yelpQuery.term = messageText;
+    sendTextMessage(recipientId, 'Please enter your location');
+  } else if (yelpQuery.location === null) {
+    yelpQuery.location = messageText;
+    sendTextMessage(recipientId, 'How many results would you like to see?');
+  } else {
+    yelpQuery.limit = messageText;
+
+    yelp.search(yelpQuery)
+    .then(function (data) {
+      data.businesses.forEach(function(business) {
+        sendTextMessage(recipientId, business.name);
+      });
+    })
+    .catch(function (err) {
+      console.error(err);
     });
-  })
-  .catch(function (err) {
-    console.error(err);
-  });
+  }
 }
 
 /*
