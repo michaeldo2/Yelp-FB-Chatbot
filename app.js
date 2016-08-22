@@ -258,7 +258,7 @@ function receivedMessage(event) {
     return;
   }
   if (yelpQuery !== null) {
-    yelpQuery(senderID, messageText);
+    sendYelpQuery(senderID, messageText);
     return;
   }
 
