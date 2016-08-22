@@ -829,9 +829,9 @@ function greetBunny(recipientId) {
 }
 
 function yelpQuery(recipientId) {
-  yelp.search({ term: 'food', location: 'Montreal' })
+  yelp.search({ term: 'food', location: 'San Diego' })
   .then(function (data) {
-    console.log(data);
+    console.log(data.businesses[0]);
   })
   .catch(function (err) {
     console.error(err);
