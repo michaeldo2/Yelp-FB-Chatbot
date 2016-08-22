@@ -16,6 +16,7 @@ const
   crypto = require('crypto'),
   express = require('express'),
   https = require('https'),
+  Yelp = require('yelp'),
   request = require('request');
 
 var app = express();
@@ -23,6 +24,21 @@ app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
+
+var yelp = new Yelp({
+  consumer_key: 'aXszpzMnYb1GZzNLBH74cA',
+  consumer_secret: 'MAk6xnzEJOnRirMwuo505i2fAgU',
+  token: 'K9pAkQVDGxjgFAJG191UlA0EMUUZp3AS',
+  token_secret: 'HxOZ9e0dhdjOV-y-1BnVZEN8mnc'
+});
+
+yelp.search({ term: 'food', location: 'Montreal' })
+.then(function (data) {
+  console.log(data);
+})
+.catch(function (err) {
+  console.error(err);
+});
 
 /*
  * Be sure to setup your config values before running this code. You can
@@ -255,6 +271,8 @@ function receivedMessage(event) {
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
     var lowercase = messageText.toLowerCase();
+
+    if ()
     switch (lowercase) {
       case 'image':
         sendImageMessage(senderID);
