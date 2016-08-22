@@ -25,12 +25,12 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
-// var yelp = new Yelp({
-//   consumer_key: 'aXszpzMnYb1GZzNLBH74cA',
-//   consumer_secret: 'MAk6xnzEJOnRirMwuo505i2fAgU',
-//   token: 'K9pAkQVDGxjgFAJG191UlA0EMUUZp3AS',
-//   token_secret: 'HxOZ9e0dhdjOV-y-1BnVZEN8mnc',
-// });
+var yelp = new Yelp({
+  consumer_key: 'aXszpzMnYb1GZzNLBH74cA',
+  consumer_secret: 'MAk6xnzEJOnRirMwuo505i2fAgU',
+  token: 'K9pAkQVDGxjgFAJG191UlA0EMUUZp3AS',
+  token_secret: 'HxOZ9e0dhdjOV-y-1BnVZEN8mnc',
+});
 
 // yelp.search({ term: 'food', location: 'Montreal' })
 // .then(function (data) {
