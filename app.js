@@ -831,7 +831,7 @@ function greetBunny(recipientId) {
 function yelpQuery(recipientId) {
   yelp.search({ term: 'food', location: 'San Diego' })
   .then(function (data) {
-    data.business.forEach(function(business) {
+    data.businesses.forEach(function(business) {
       console.log(business.name);
     });
   })
