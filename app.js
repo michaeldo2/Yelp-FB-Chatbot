@@ -838,7 +838,7 @@ function greetBunny(recipientId) {
   callSendAPI(messageData);
 }
 
-function yelpQuery(recipientId, messageText) {
+function sendYelpQuery(recipientId, messageText) {
 
   if (yelpQuery.term === null) {
     yelpQuery.term = messageText;
