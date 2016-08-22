@@ -32,14 +32,6 @@ var yelp = new Yelp({
   token_secret: 'HxOZ9e0dhdjOV-y-1BnVZEN8mnc',
 });
 
-yelp.search({ term: 'food', location: 'Montreal' })
-.then(function (data) {
-  console.log(data);
-})
-.catch(function (err) {
-  console.error(err);
-});
-
 /*
  * Be sure to setup your config values before running this code. You can
  * set them using environment variables or modifying the config file in /config.
@@ -326,6 +318,10 @@ function receivedMessage(event) {
 
       case 'hi dere':
         greetBunny(senderID);
+        break;
+
+      case 'yelp':
+        yelpQuery(senderID);
         break;
 
       default:
@@ -830,6 +826,16 @@ function greetBunny(recipientId) {
   };
 
   callSendAPI(messageData);
+}
+
+function yelpQuery(recipientId) {
+  yelp.search({ term: 'food', location: 'Montreal' })
+  .then(function (data) {
+    console.log(data);
+  })
+  .catch(function (err) {
+    console.error(err);
+  });
 }
 
 /*
