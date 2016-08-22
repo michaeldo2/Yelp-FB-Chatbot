@@ -17,9 +17,9 @@ const
   express = require('express'),
   https = require('https'),
   Yelp = require('yelp'),
-  yelpQuery = null,
   request = require('request');
 
+var yelpQuery = null;
 var app = express();
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
