@@ -858,6 +858,7 @@ function sendYelpQuery(recipientId, messageText) {
     .catch(function (err) {
       console.error(err);
     });
+    yelpQuery = null;
   }
 }
 
