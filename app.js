@@ -267,7 +267,7 @@ function receivedMessage(event) {
     // If we receive a text message, check to see if it matches any special
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
-    var lowercase = messageText.toLowerCase();
+    var lowercase = messageText.toLowerCase().trim();
     switch (lowercase) {
       case 'image':
         sendImageMessage(senderID);
@@ -861,7 +861,7 @@ function sendYelpQuery(recipientId, messageText) {
 
 function generateBusinessString(business) {
   var output = business.name;
-  console.log(business.location.display_address);
+  output += business.location.join(", ");
   return output;
 }
 
