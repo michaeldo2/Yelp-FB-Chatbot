@@ -848,7 +848,7 @@ function sendYelpQuery(recipientId, messageText) {
     yelp.search(yelpQuery)
     .then(function (data) {
       data.businesses.forEach(function(business) {
-        sendTextMessage(recipientId, business.name);
+        sendTextMessage(recipientId, generateBusinessString(business));
       });
     })
     .catch(function (err) {
@@ -857,6 +857,12 @@ function sendYelpQuery(recipientId, messageText) {
     });
     yelpQuery = null;
   }
+}
+
+function generateBusinessString(business) {
+  var output = business.name;
+  console.log(business.location.display_address);
+  return output;
 }
 
 /*
