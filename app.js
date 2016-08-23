@@ -860,7 +860,7 @@ function sendYelpQuery(recipientId, messageText) {
 }
 
 function generateBusinessString(business) {
-  var output = business.name;
+  var output = business.name + "\n";
   output += business.location.display_address.join(", ");
   return output;
 }
