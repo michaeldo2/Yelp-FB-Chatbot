@@ -326,11 +326,7 @@ function receivedMessage(event) {
         break;
 
       case 'yelp':
-        yelpQuery = {
-          term: null,
-          location: null,
-          limit: null
-        };
+        yelpQuery = {};
         sendTextMessage(senderID, 'What would you like to search for?');
         break;
 
@@ -840,10 +836,10 @@ function greetBunny(recipientId) {
 
 function sendYelpQuery(recipientId, messageText) {
 
-  if (yelpQuery.term === null) {
+  if (!yelpQuery.term) {
     yelpQuery.term = messageText;
     sendTextMessage(recipientId, 'Please enter your location');
-  } else if (yelpQuery.location === null) {
+  } else if (!yelpQuery.location) {
     yelpQuery.location = messageText;
     sendTextMessage(recipientId, 'How many results would you like to see?');
   } else {
@@ -856,6 +852,7 @@ function sendYelpQuery(recipientId, messageText) {
       });
     })
     .catch(function (err) {
+      sendTextMessage(recipientId, err.text);
       console.error(err);
     });
     yelpQuery = null;
