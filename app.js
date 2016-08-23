@@ -861,7 +861,7 @@ function sendYelpQuery(recipientId, messageText) {
 
 function generateBusinessString(business) {
   var output = business.name;
-  output += business.location.join(", ");
+  output += business.location.display_address.join(", ");
   return output;
 }
 
