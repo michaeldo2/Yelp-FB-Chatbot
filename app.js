@@ -852,7 +852,7 @@ function sendYelpQuery(recipientId, messageText) {
       });
     })
     .catch(function (err) {
-      sendTextMessage(recipientId, err.text);
+      sendTextMessage(recipientId, err.error.text);
       console.error(err);
     });
     yelpQuery = null;
