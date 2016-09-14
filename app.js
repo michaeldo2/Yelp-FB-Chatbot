@@ -835,32 +835,37 @@ function greetBunny(recipientId) {
 }
 
 function sendYelpQuery(recipientId, messageText) {
+  var selected;
 
   if (!yelpQuery.term) {
     yelpQuery.term = messageText;
-    sendTextMessage(recipientId, 'Please enter your location');
+    sendTextMessage(recipientId, 'Please enter your location.');
   } else if (!yelpQuery.location) {
     yelpQuery.location = messageText;
     sendTextMessage(recipientId, 'How many results would you like to see?');
-  } else {
+  } else if (!yelpQuery.limit) {
     yelpQuery.limit = messageText;
 
     yelp.search(yelpQuery)
     .then(function (data) {
-      data.businesses.forEach(function(business) {
+      data.businesses.forEach(function(business, index) {
         sendTextMessage(recipientId, generateBusinessString(business));
       });
+      yelpQuery.res = data;
+      sendTextMessage(recipientId, "Select one of the options if you'd like more information.");
     })
     .catch(function (err) {
       sendTextMessage(recipientId, err.error.text);
       console.error(err);
     });
-    yelpQuery = null;
+  } else {
+    selected = yelpQuery.res[parseInt(messageText)];
+    sendTextMessage(recipientId, selected.name);
   }
 }
 
-function generateBusinessString(business) {
-  var output = business.name + "\n";
+function generateBusinessString(business, index) {
+  var output = index + ". " + business.name + "\n";
   output += business.location.display_address.join(", ");
   return output;
 }
