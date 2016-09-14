@@ -850,7 +850,7 @@ function sendYelpQuery(recipientId, messageText) {
     .then(function (data) {
       data.businesses.forEach(function(business, index) {
         sendTextMessage(recipientId, generateBusinessString(business, index));
-      };
+      });
       yelpQuery.res = data;
       sendTextMessage(recipientId, "Select one of the options if you'd like more information.");
     })
