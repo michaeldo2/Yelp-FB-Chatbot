@@ -847,8 +847,8 @@ function sendYelpQuery(recipientId, messageText) {
     });
   } else {
     selected = yelpQuery.res[parseInt(messageText)];
-    yelpQuery = null;
     console.log(yelpQuery.res);
+    yelpQuery = null;
     sendTextMessage(recipientId, selected.name);
   }
 }
