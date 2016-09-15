@@ -821,19 +821,6 @@ function sendAccountLinking(recipientId) {
   callSendAPI(messageData);
 }
 
-function greetBunny(recipientId) {
-  var messageData = {
-    recipient: {
-      id: recipientId
-    },
-    message: {
-      text: "Hi dere bunny buns :3"
-    }
-  };
-
-  callSendAPI(messageData);
-}
-
 function sendYelpQuery(recipientId, messageText) {
   var selected;
 
@@ -860,6 +847,7 @@ function sendYelpQuery(recipientId, messageText) {
     });
   } else {
     selected = yelpQuery.res[parseInt(messageText)];
+    console.log(yelpQuery.res);
     sendTextMessage(recipientId, selected.name);
     yelpQuery = null;
   }
