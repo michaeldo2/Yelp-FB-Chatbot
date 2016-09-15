@@ -843,6 +843,7 @@ function sendYelpQuery(recipientId, messageText) {
     })
     .catch(function (err) {
       sendTextMessage(recipientId, err.error.text);
+      yelpQuery = null
       console.error(err);
     });
   } else {
@@ -857,6 +858,38 @@ function generateBusinessString(business, index) {
   var output = index + ". " + business.name + "\n";
   output += business.location.display_address.join(", ");
   return output;
+}
+
+function moreInfo(business) {
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [{
+            title: business.name,
+            subtitle: business.rating + " out of 5 stars",
+            image_url: business.image_url,
+            buttons: [{
+              type: "web_url",
+              url: business.url,
+              title: "Go to website"
+            }, {
+              type: "phone_number",
+              title: "Call phone number",
+              payload: business.phone
+            }],
+          }]
+        }
+      }
+    }
+  };
+
+  callSendAPI(messageData);
 }
 
 /*
